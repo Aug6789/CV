@@ -260,6 +260,61 @@ strong { color: #fff; font-weight: 600; }
 .microstats b { font-family: var(--font-disp); font-size: 1.5rem; font-weight: 600; letter-spacing: -.03em; }
 .microstats span { font-size: 12.8px; color: var(--dim); }
 
+/* ── Teams led ──────────────────────────────────────────── */
+.mini-head {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 400;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--dim);
+  margin-bottom: 16px;
+}
+.leadled { margin-top: 38px; }
+.led-list { display: grid; gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: 14px; overflow: hidden; }
+.led-list li {
+  display: grid; grid-template-columns: 64px 220px 1fr; align-items: baseline; gap: 16px;
+  padding: 13px 18px; background: #080b10;
+  transition: background .25s;
+}
+.led-list li:hover { background: rgba(52,211,153,.05); }
+.led-n { font-family: var(--font-disp); font-size: 1.15rem; font-weight: 700; letter-spacing: -.03em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.led-org { font-size: 14.2px; font-weight: 500; color: var(--text); }
+.led-note { font-size: 13px; color: var(--dim); font-weight: 300; }
+
+/* ── World map ──────────────────────────────────────────── */
+.map-frame {
+  position: relative; overflow: hidden;
+  border: 1px solid var(--line); border-radius: var(--r);
+  background: radial-gradient(ellipse 70% 90% at 55% 60%, rgba(52,211,153,.07), transparent 70%), #080b10;
+  padding: 10px;
+}
+.map-frame img { display: block; width: 100%; height: auto; }
+
+.map-legend {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px; margin-top: 18px;
+}
+.legend-item {
+  display: grid; grid-template-columns: 14px 1fr; gap: 12px; align-items: start;
+  padding: 15px 17px; border: 1px solid var(--line-soft); border-radius: 13px;
+  background: rgba(255,255,255,.022);
+  transition: border-color .3s, background .3s;
+}
+.legend-item:hover { border-color: rgba(52,211,153,.28); background: rgba(255,255,255,.04); }
+.legend-dot {
+  width: 9px; height: 9px; margin-top: 6px; border-radius: 50%;
+  background: var(--mint); box-shadow: 0 0 0 3px rgba(52,211,153,.16);
+}
+.legend-item b { display: block; font-size: 14.5px; font-weight: 600; }
+.legend-item span { display: block; margin-top: 4px; font-size: 13px; color: var(--dim); font-weight: 300; line-height: 1.5; }
+
+.corridor {
+  display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: start;
+  margin-top: 16px; padding: 22px 24px;
+  border: 1px solid rgba(34,211,238,.22); border-radius: var(--r);
+  background: linear-gradient(150deg, rgba(34,211,238,.07), rgba(255,255,255,.012));
+}
+.corridor-n { font-family: var(--font-disp); font-size: 2.4rem; font-weight: 700; letter-spacing: -.04em; line-height: 1; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.corridor b { display: block; font-size: 14.5px; font-weight: 600; }
+.corridor span { display: block; margin-top: 7px; font-size: 13.5px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
 /* ── Timeline ───────────────────────────────────────────── */
 .timeline { position: relative; }
 .timeline::before {
@@ -436,6 +491,9 @@ strong { color: #fff; font-weight: 600; }
   .edu { grid-template-columns: 1fr; gap: 6px; }
   .m-date { margin-left: 0; width: 100%; }
   .contact-card { padding: 48px 22px 44px; }
+  .led-list li { grid-template-columns: 56px 1fr; gap: 6px 14px; }
+  .led-note { grid-column: 2; }
+  .corridor { grid-template-columns: 1fr; gap: 10px; }
 }
 
 @media (max-width: 520px) {
@@ -461,6 +519,10 @@ strong { color: #fff; font-weight: 600; }
   .section { padding: 18px 0; break-inside: avoid; }
   .job, .card, .stat, .edu { break-inside: avoid; border-color: #ddd !important; background: none !important; }
   .stat-chart .chart-bar { transform: scaleY(1) !important; }
+  .map-frame, .legend-item, .corridor, .led-list li { background: none !important; border-color: #ddd !important; }
+  .map-frame, .legend-item, .corridor { break-inside: avoid; }
+  .led-org, .legend-item b, .corridor b { color: #111; }
+  .led-note, .legend-item span, .corridor span { color: #333; }
   .job-points li, .list-dot li, .mandate ul li, .stat p, .hero-lede { color: #333; }
   .mandate ul { display: grid !important; }
 }
