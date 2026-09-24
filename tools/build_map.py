@@ -19,8 +19,13 @@ import sys
 HIGHLIGHT = {
     "South Africa": {"label": "South Africa", "dx": 4, "dy": 26, "anchor": "middle"},
     "Botswana": {"label": "Botswana", "dx": -12, "dy": -14, "anchor": "end"},
-    "United Kingdom": {"label": "United Kingdom", "dx": -14, "dy": -10, "anchor": "end"},
+    # UK sits immediately left of the Netherlands; offset them in opposite
+    # vertical directions so the two captions never overlap.
+    "United Kingdom": {"label": "United Kingdom", "dx": -14, "dy": -14, "anchor": "end"},
+    "Netherlands": {"label": "Netherlands", "dx": 15, "dy": 15, "anchor": "start"},
     "India": {"label": "India", "dx": 14, "dy": 5, "anchor": "start"},
+    "United States of America": {"label": "United States", "dx": 0, "dy": -18, "anchor": "middle"},
+    "Canada": {"label": "Canada", "dx": 0, "dy": -18, "anchor": "middle"},
 }
 
 STYLE = """
@@ -202,7 +207,7 @@ def main():
     svg = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {WIDTH:.0f} {height:.0f}" '
         f'role="img" aria-label="World map highlighting South Africa, Botswana, '
-        f'the United Kingdom and India">',
+        f'the United Kingdom, India, the Netherlands, the United States and Canada">',
         f"<style>{STYLE}</style>",
         '<defs><linearGradient id="hl" x1="0" y1="0" x2="0" y2="1">'
         '<stop offset="0" stop-color="#34d399"/>'
