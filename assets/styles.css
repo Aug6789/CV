@@ -231,14 +231,25 @@ strong { color: #fff; font-weight: 600; }
 .stat:hover { transform: translateY(-5px); border-color: rgba(52,211,153,.32); box-shadow: 0 20px 50px -26px rgba(0,0,0,.9); }
 .stat:hover::before { opacity: 1; }
 
+.stat-head { margin-bottom: 4px; }
 .stat-range { display: flex; align-items: baseline; gap: 9px; font-family: var(--font-disp); font-size: 1.62rem; font-weight: 700; letter-spacing: -.035em; }
 .stat-range .from { color: var(--dim); font-size: .78em; }
 .stat-range i { font-style: normal; color: var(--mint); font-size: .8em; }
 .stat-range .to { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .stat-unit { margin-top: 3px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); }
-.stat-bar { margin: 16px 0 14px; height: 3px; border-radius: 3px; background: rgba(255,255,255,.07); overflow: hidden; }
-.stat-bar span { display: block; height: 100%; width: 0; border-radius: 3px; background: var(--grad); transition: width 1.4s var(--ease) .15s; }
-.is-visible .stat-bar span, .stat.is-visible .stat-bar span { width: var(--fill); }
+
+.stat-chart { display: block; width: 100%; height: auto; margin: 14px 0 12px; overflow: visible; }
+.stat-chart .chart-bar {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  transform: scaleY(0);
+  transition: transform 1.1s var(--ease);
+}
+.stat.is-visible .stat-chart .chart-bar { transform: scaleY(1); }
+.stat-chart .chart-bar + .chart-bar { transition-delay: .18s; }
+.stat-chart text { font-family: var(--font-mono); letter-spacing: .02em; }
+.stat-chart line { transition: none; }
+
 .stat p { font-size: 13.6px; color: var(--muted); font-weight: 300; line-height: 1.55; }
 
 .microstats {
@@ -437,7 +448,7 @@ strong { color: #fff; font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }
-  .stat-bar span { width: var(--fill); }
+  .stat-chart .chart-bar { transform: scaleY(1); }
 }
 
 /* ── Print ──────────────────────────────────────────────── */
@@ -449,6 +460,7 @@ strong { color: #fff; font-weight: 600; }
   .hero-title .grad, .section-tag, .stat-range .to { -webkit-text-fill-color: #0f5132; color: #0f5132; }
   .section { padding: 18px 0; break-inside: avoid; }
   .job, .card, .stat, .edu { break-inside: avoid; border-color: #ddd !important; background: none !important; }
+  .stat-chart .chart-bar { transform: scaleY(1) !important; }
   .job-points li, .list-dot li, .mandate ul li, .stat p, .hero-lede { color: #333; }
   .mandate ul { display: grid !important; }
 }
